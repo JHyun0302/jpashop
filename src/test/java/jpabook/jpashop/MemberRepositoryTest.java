@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class) //spring 관련 test
 @SpringBootTest
 public class MemberRepositoryTest {
     @Autowired
