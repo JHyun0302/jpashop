@@ -21,7 +21,7 @@ public class MemberService {
     /**
      * 회원 가입
      */
-    @Transactional
+    @Transactional //데이터 변경해야하므로 readOnly = false
     public Long join(Member member) {
         validateDuplicateMember(member); //중복 회원 검증
         memberRepository.save(member);
