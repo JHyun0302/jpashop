@@ -41,7 +41,7 @@ public class OrderRepository {
     /**
      * 문자 더하기 방법: 매우 복잡! 실무에서 사용안함!
      */
-    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
         //language=JPAQL
         String jpql = "select o From Order o join o.member m";
         boolean isFirstCondition = true;
