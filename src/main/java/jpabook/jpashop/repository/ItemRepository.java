@@ -16,7 +16,14 @@ public class ItemRepository {
         if (item.getId() == null) {
             em.persist(item);
         } else {
-            em.merge(item); //유사 update
+            Item merge = em.merge(item);//유사 update
+            /**
+             * item: 영속성 컨텍스트 X
+             * merge: 영속성 컨텍스트에서 관리하는 객체(병합이 되고 관리대상임! -> 이후 사용시 merge 쓰기!)
+             *
+             * merge 보다는 변경 감지 이용!!!!
+             * merge는 모든 속성값 변경 -> 값이 없으면 null!!
+             */
         }
     }
 
