@@ -23,6 +23,20 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    /**
+     * "변경 감지" 이용해서 update: 트랜잭션 commit 될 때 JPA는 flush 기능을 통해 변경된 사항을 확인함!
+     * 아래 코드 == "merge" 동작 방식: DB에서 조회한 데이터를 findItem에 다 때려박고 반환시킴!
+     */
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) { //"UpdateItemDto updateItemDto" 파라미터로 주기
+        Item findItem = itemRepository.findOne(itemId); //영속 상태(트랜잭션 안): 변경감지 대상!
+
+        findItem.change(name, price, stockQuantity); //데이터 변경 지점 1곳으로 통일!
+//        findItem.setName(name);
+//        findItem.setPrice(price);
+//        findItem.setStockQuantity(stockQuantity);
+    }
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
