@@ -56,17 +56,19 @@ public class ItemController {
     }
 
     @PostMapping("items/{itemId}/edit")
-    public String updateItem(@PathVariable String itemId, @ModelAttribute("form") BookForm form) {
-
-        Book book = new Book();
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
-
-        itemService.saveItem(book);
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) {
+        /**
+         * em.merge() 이용해서 update - merge 사용X
+         */
+//        Book book = new Book(); //준영속 엔티티: 새로 생성되긴 했지만 이미 DB에서 1번 저장되어서 식별자가 존재함!
+//        book.setId(form.getId());
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+//        itemService.saveItem(book);
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
         return "redirect:/items";
     }
 
