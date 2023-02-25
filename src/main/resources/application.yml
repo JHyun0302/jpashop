@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create  #애플리케이션 실행 시점에 테이블 drop하고 다시 생성
+      ddl-auto: create  #create: 애플리케이션 실행 시점에 테이블 drop하고 다시 생성   #none: 원래 쓰던 테이블 그대로 재사용
     properties:
       hibernate:
         generate_statistics: true
