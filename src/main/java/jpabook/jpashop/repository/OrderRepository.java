@@ -107,5 +107,13 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    //Order 조회할 때 member & delivery join 시켜놓고 한 번에 다 가져옴
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join  fetch o.delivery d", Order.class
 
+        ).getResultList();
+    }
 }
