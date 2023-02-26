@@ -24,11 +24,14 @@ public class OrderItem {
     @ManyToOne(fetch = LAZY) //OrderItem(N) - item(1)
     @JoinColumn(name = "item_id")
     private Item item; //주문 상품
+
     @JsonIgnore
     @ManyToOne(fetch = LAZY) //OrderItem(N) - order(1)
     @JoinColumn(name = "order_id")
     private Order order; //주문
+
     private int orderPrice; //주문 가격
+
     private int count; //주문 수량
 
   /*  protected OrderItem() {
