@@ -12,6 +12,11 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 기본
+ * 1. 엔티티 노출 X, 항상 별도의 Dto 생성
+ * 2. return Type: 제네릭
+ */
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
