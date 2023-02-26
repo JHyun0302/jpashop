@@ -32,6 +32,7 @@ public class Order {
     @JoinColumn(name = "member_id")//join 뭘로 할건지(FK)
     private Member member; //주문 회원
 
+    //    @BatchSize(size = 1000) //컬렉션 성능 최적화
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //거울: Order(1) - orderItemList(N)
     private List<OrderItem> orderItems = new ArrayList<>();
 
