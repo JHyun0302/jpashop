@@ -63,6 +63,9 @@ public class OrderApiController {
         return all;
     }
 
+    /**
+     * V2: 엔티티 조회 후 Dto 변환 (N + 1)
+     */
     @GetMapping("/api/v2/orders")
     public List<OrderDto> ordersV2() {  //제네릭으로 바꾸기!!
         List<Order> orders = orderRepository.findAllByString(new OrderSearch());
@@ -73,6 +76,12 @@ public class OrderApiController {
         return result;
     }
 
+    /**
+     * OSIV 알아보기
+     * V3: 페치 조인으로 쿼리 수 최적화
+     * 한계: 컬렉션 페이징 안됨
+     */
+
     private final OrderQueryService orderQueryService;
 
     @GetMapping("/api/v3/orders")
@@ -82,8 +91,8 @@ public class OrderApiController {
 
     /**
      * V3.1 엔티티를 조회해서 DTO로 변환 페이징 고려
-     * - ToOne 관계만 우선 모두 페치 조인으로 최적화
-     * - 컬렉션 관계는 hibernate.default_batch_fetch_size, @BatchSize로 최적화
+     * - ToOne 관계만 우선 페치 조인으로 최적화
+     * - 컬렉션 관계는 지연로딩(fetchType = LAZY) & hibernate.default_batch_fetch_size, @BatchSize로 최적화
      */
     @GetMapping("/api/v3.1/orders")
     public List<OrderDto> ordersV3_page(@RequestParam(value = "offset", defaultValue = "0") int offset,
@@ -97,7 +106,8 @@ public class OrderApiController {
     }
 
     /**
-     * JPA에서 DTO 직접 조회: 컬렉션 아닌 부분 & 컬렉션 부분 따로 나누기 (1 + N 문제 발생)
+     * JPA에서 DTO 직접 조회: 컬렉션 아닌 부분 & 컬렉션 부분 따로 나누기 (1 + N)
+     * - 특정 주문 한건만 조회
      */
     @GetMapping("/api/v4/orders")
     public List<OrderQueryDto> ordersV4() {
@@ -105,7 +115,8 @@ public class OrderApiController {
     }
 
     /**
-     * JPA에서 DTO 직접 조회 - 컬렉션 조회 최적화
+     * JPA에서 DTO 직접 조회 - 컬렉션 조회 최적화(쿼리 2개 - 1: find, 1:search)
+     * - 여러 주문을 한꺼번에 조회
      */
     @GetMapping("/api/v5/orders")
     public List<OrderQueryDto> ordersV5() {
@@ -113,7 +124,8 @@ public class OrderApiController {
     }
 
     /**
-     * JPA에서 DTO 직접 조회 - 플랫 데이터 최적화
+     * JPA에서 DTO 직접 조회 - 플랫 데이터 최적화(쿼리 1개)
+     * - Order 기준으로 페이징 불가능! ("OrderItem"이 N이므로 페이징 되버림)
      */
     @GetMapping("/api/v6/orders")
     public List<OrderQueryDto> ordersV6() {
