@@ -33,10 +33,11 @@ public class Order {
     private Member member; //주문 회원
 
     //    @BatchSize(size = 1000) //컬렉션 성능 최적화
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //거울: Order(1) - orderItemList(N)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    //orderItems 리스트 값들 각각 persist 해야 하는데 Cacade.ALL하면 persist를 전파해서 1번만 날려도 됨!
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL) //cascade: persist(Order) 하면 delivery 내용도 persist됨!
     @JoinColumn(name = "delivery_id") // FK: 1대 1관계에서는 누가 더 데이터 접근 많이 하는지? ex) 주문정보를 보고 배달정보를 확인!
     private Delivery delivery; //배송정보
 
