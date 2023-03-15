@@ -23,7 +23,7 @@ public class Category {
     @ManyToMany
     @JoinTable(name = "category_item",
             joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id")) //중간 테이블 맵핑
+            inverseJoinColumns = @JoinColumn(name = "item_id")) //중간 테이블 맵핑(Category_Item)
     private List<Item> items = new ArrayList<>();
 
     @ManyToOne(fetch = LAZY)
