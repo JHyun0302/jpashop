@@ -30,7 +30,7 @@ public class MemberService {
 
     private void validateDuplicateMember(Member member) {
         //EXCEPTION
-        List<Member> findMembers = memberRepository.findByName(member.getName());
+        List<Member> findMembers = memberRepository.findByName(member.getName()); //스프링 data Jpa 사용
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
