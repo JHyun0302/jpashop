@@ -42,7 +42,7 @@ public class OrderService {
         //주문 생성
         Order order = Order.createOrder(member, delivery, orderItem);
 
-        //주문 저장: order 저장될 때 "CaCade.All" 옵션때문에 orderItem,delivery도 같이 persist됨!
+        //주문 저장: order 저장될 때 "Cascade.All" 옵션때문에 orderItem,delivery도 같이 persist됨!
         orderRepository.save(order);
 
         return order.getId();
