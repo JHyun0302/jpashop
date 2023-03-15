@@ -28,7 +28,8 @@ public class MemberRepositoryOld {
     }
 
     public List<Member> findAll() {
-        return em.createQuery("select m from Member m", Member.class).getResultList(); // (jpql, 반환 type)
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList(); // (jpql, 반환 type)
     }
 
     /**
