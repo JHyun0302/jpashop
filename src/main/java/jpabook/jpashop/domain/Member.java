@@ -21,7 +21,7 @@ public class Member {
     @NotEmpty
     private String name;
 
-    @Embedded
+    @Embedded //내장 타입
     private Address address;
 
     @JsonIgnore //순수하게 회원 정보만 api로 받을 때 order 정보 없애기

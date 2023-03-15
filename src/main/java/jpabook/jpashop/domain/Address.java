@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
  * JPA 스팩상 자바 기본 생성자는 public 또는 protected 사용하기! (객체 생성시 리플랙션 같은 기술 사용해야함!)
  * new, 상속 금지
  */
-@Embeddable //어딘가 내장 가능하다!
+@Embeddable //어딘가 내장 가능하다! - 사용시 @Embedded
 @Getter
 public class Address {
     private String city;
