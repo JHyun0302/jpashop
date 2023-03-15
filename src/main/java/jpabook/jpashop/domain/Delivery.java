@@ -24,6 +24,6 @@ public class Delivery {
     @Embedded //내장 타입
     private Address address;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //String으로 해야 삭제 했을 때 에러 안남
     private DeliveryStatus status; //ENUM [READY(준비), COMP(배송)]
 }
