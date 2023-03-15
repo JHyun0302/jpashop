@@ -7,7 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("B") //DB가 singleTable 다 때려박을 때 구분 할 수 있게끔
+@DiscriminatorValue("B") //singleTable 전략이여서 다 때려박고 구분 할 수 있게끔
 @Getter
 @Setter
 public class Book extends Item {

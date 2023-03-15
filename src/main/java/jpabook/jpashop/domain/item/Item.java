@@ -15,7 +15,7 @@ import java.util.List;
  * InheritanceType.SINGLE_TABLE: 한 테이블에 다 때려박기, .JOINED: 정규화된 스타일, .TABLE_PER_CLASS: 각각 테이블(album, book, movie)
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) //상속관계 전략
 @DiscriminatorColumn(name = "dtype") //"SINGLE_TABLE" 이므로 저장할 때 구분할 수 있어야함!
 @Getter
 @Setter
