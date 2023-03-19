@@ -8,12 +8,14 @@ import jpabook.jpashop.service.ItemService;
 import jpabook.jpashop.service.MemberService;
 import jpabook.jpashop.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
@@ -37,6 +39,9 @@ public class OrderController {
                         @RequestParam("itemId") Long itemId,
                         @RequestParam("count") int count) {
 
+        log.info("memberId = {}", memberId);
+        log.info("itemId = {}", itemId);
+        log.info("count = {}", count);
         orderService.order(memberId, itemId, count);
         return "redirect:/orders";
     }
