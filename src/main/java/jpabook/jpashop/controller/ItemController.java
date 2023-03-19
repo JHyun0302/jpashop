@@ -72,7 +72,6 @@ public class ItemController {
         return "redirect:/items";
     }
 
-
     private static Book createBook(BookForm form) {
         Book book = new Book();
         book.setName(form.getName());
@@ -82,5 +81,4 @@ public class ItemController {
         book.setIsbn(form.getIsbn());
         return book;
     }
-
 }
