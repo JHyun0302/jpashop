@@ -36,12 +36,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="item : ${orders}">
+            <span th:each="item : ${orders}">
+            <tr th:each="num : ${#numbers.sequence(0,item.orderItems.size()-1)}" }>
                 <td th:text="${item.id}"></td>
                 <td th:text="${item.member.name}"></td>
-                <td th:text="${item.orderItems[0].item.name}"></td>
-                <td th:text="${item.orderItems[0].orderPrice}"></td>
-                <td th:text="${item.orderItems[0].count}"></td>
+                <td th:text="${item.orderItems[num].item.name}"></td>
+                <td th:text="${item.orderItems[num].orderPrice}"></td>
+                <td th:text="${item.orderItems[num].count}"></td>
                 <td th:text="${item.status}"></td>
                 <td th:text="${item.orderDate}"></td>
                 <td>
@@ -50,6 +51,7 @@
                        class="btn btn-danger">CANCEL</a>
                 </td>
             </tr>
+            </span>
             </tbody>
         </table>
     </div>
