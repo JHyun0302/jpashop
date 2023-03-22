@@ -37,7 +37,6 @@ public class OrderSimpleApiController {
      * - 필요 없는 정보도 강제 지연 로딩 때문에 결과로 뜸!
      */
     @GetMapping("/api/v1/simple-orders")
-
     public List<Order> ordersV1() {
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
         for (Order order : all) {
@@ -50,7 +49,7 @@ public class OrderSimpleApiController {
     /**
      * V2. 엔티티를 조회해서 DTO로 변환(fetch join 사용X)
      * - 단점: 지연로딩으로 쿼리 N번 호출
-     * <p>
+     * - test: .yml의 "default_batch_fetch_size" 주석 처리하기
      * order, member, delivery 엔티티 검색
      */
     @GetMapping("/api/v2/simple-orders")
@@ -71,7 +70,7 @@ public class OrderSimpleApiController {
      * V3. 엔티티를 조회해서 DTO로 변환(fetch join 사용O)
      * - fetch join으로 쿼리 1번 호출
      * 참고: fetch join에 대한 자세한 내용은 JPA 기본편 참고(정말 중요함)
-     * trade off -> 모든 정보를 DB에서 퍼올려서 네트워크를 많이 잡아 먹지만 재사용 가능함!
+     * trade off -> 모든 정보를 DB에서 퍼올려서 네트워크를 많이 잡아 먹지만 재사용 가능함!(Entity 조회)
      */
     @GetMapping("/api/v3/simple-orders")
     public Result ordersV3() {
@@ -88,7 +87,7 @@ public class OrderSimpleApiController {
      * V4. JPA에서 DTO로 바로 조회
      * - 쿼리1번 호출
      * - select 절에서 원하는 데이터만 선택해서 조회
-     * trade off -> 내가 필요한 정보만 DB에서 퍼올려서 네트워크는 적지만 코드 재사용을 못함!
+     * trade off -> 내가 필요한 정보만 DB에서 퍼올려서 네트워크는 적지만 코드 재사용을 못함! & API 스펙 바뀌면 코드 뜯어 고쳐야함!(Dto 조회)
      */
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDto> ordersV4() {
