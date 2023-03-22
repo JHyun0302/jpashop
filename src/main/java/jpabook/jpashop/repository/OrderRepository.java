@@ -151,7 +151,7 @@ public class OrderRepository {
         return em.createQuery(
                 "select o from Order o" +
                         " join fetch o.member m" +
-                        " join  fetch o.delivery d", Order.class
+                        " joinㅣㅑ fetch o.delivery d", Order.class
 
         ).getResultList();
     }
@@ -161,8 +161,8 @@ public class OrderRepository {
         return em.createQuery(
                         "select o from Order o" +
                                 " join fetch o.member m" +
-                                " join  fetch o.delivery d", Order.class
-                ).setFirstResult(offset) //페이징
+                                " join  fetch o.delivery d", Order.class)
+                .setFirstResult(offset) //페이징
                 .setMaxResults(limit) //페이징
                 .getResultList();
     }
