@@ -16,7 +16,7 @@ public class OrderDto {
     private LocalDateTime orderDate;
     private OrderStatus orderStatus;
     private Address address;
-    private List<OrderItemDto> orderItems;
+    private List<OrderItemDto> orderItems; //"OrderItemDto"도 Dto로 맵핑!
 
     public OrderDto(Order order) {
         orderId = order.getId();
