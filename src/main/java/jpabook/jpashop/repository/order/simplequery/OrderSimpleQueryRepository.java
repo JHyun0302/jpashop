@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * GetMapping("/api/v4/simple-orders")
- * 직접 select 절에서 원하는 데이터를 직접 선택
+ * 직접 select 절에서 원하는 데이터를 직접 선택 -> 직접 조회용으로 만들어서 재사용성 떨어짐!(폴더 만들어서 따로 저장)
+ * Api 스펙 바뀌면 코드 뜯어 고쳐야함!
  */
 @Repository
 @RequiredArgsConstructor
