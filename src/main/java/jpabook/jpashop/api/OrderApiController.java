@@ -77,7 +77,7 @@ public class OrderApiController {
     }
 
     /**
-     * OSIV 알아보기
+     * OSIV: <open session in view: false>
      * V3: 페치 조인으로 쿼리 수 최적화
      * 한계: 컬렉션 페이징 안됨
      */
@@ -125,6 +125,7 @@ public class OrderApiController {
 
     /**
      * JPA에서 DTO 직접 조회 - 플랫 데이터 최적화(쿼리 1개)
+     * - 모두 join 시킨 후 return 값으로 중복 데이터 제거!
      * - Order 기준으로 페이징 불가능! ("OrderItem"이 N이므로 페이징 되버림)
      */
     @GetMapping("/api/v6/orders")
