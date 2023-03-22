@@ -64,7 +64,7 @@ public class MemberApiController {
     @Data
     @AllArgsConstructor
     static class MemberDto {
-        private String name;
+        private String name; //api 스펙
     }
 
 
@@ -106,10 +106,24 @@ public class MemberApiController {
             @RequestBody @Valid UpdateMemberRequest request) {
 
         memberService.update(id, request.getName());
-        Member findMember = memberService.findOne(id);
+        Member findMember = memberService.findOne(id); //update와 조회 기능 따로 두기!
         return new UpdateMemberResponse(findMember.getId(), findMember.getName());
     }
 
+    @Data
+    static class CreateMemberRequest {
+        @NotEmpty
+        private String name;
+    }
+
+    @Data
+    static class CreateMemberResponse {
+        private Long id;
+
+        public CreateMemberResponse(Long id) {
+            this.id = id;
+        }
+    }
 
     @Data
     static class UpdateMemberRequest {
@@ -122,23 +136,4 @@ public class MemberApiController {
         private Long id;
         private String name;
     }
-
-
-    @Data
-    static class CreateMemberRequest {
-        @NotEmpty
-        private String name;
-    }
-
-
-    @Data
-    static class CreateMemberResponse {
-        private Long id;
-
-        public CreateMemberResponse(Long id) {
-            this.id = id;
-        }
-    }
-
-
 }
