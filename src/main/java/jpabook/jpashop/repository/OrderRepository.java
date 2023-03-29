@@ -151,7 +151,7 @@ public class OrderRepository {
         return em.createQuery(
                 "select o from Order o" +
                         " join fetch o.member m" +
-                        " joinㅣㅑ fetch o.delivery d", Order.class
+                        " join fetch o.delivery d", Order.class
 
         ).getResultList();
     }
